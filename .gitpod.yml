@@ -31,6 +31,10 @@ ports:
   - port: 1100
     visibility: public
     onOpen: ignore
+
+  - port: 54320
+    visibility: public
+    onOpen: ignore
   
 
 github:
