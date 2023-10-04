@@ -1,6 +1,7 @@
 tasks:
   - init: |
       cp .env.example .env &&
+      cp .env packages/prisma/.env &&
       npm run dx
     command: npm run dev
 ports:
