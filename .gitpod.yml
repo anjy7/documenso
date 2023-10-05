@@ -6,8 +6,7 @@ tasks:
       sed -i -e "s|http://localhost:3000|$(gp url 3000)|" .env \
              -e "s|http://localhost:3001|$(gp url 3001)|" .env \
              -e "s|http://localhost:9000|$(gp url 9000)|" .env 
-      cp .env packages/prisma/.env &&
-      npm run dx 
+      cp .env packages/prisma/.env 
     command: npm run dev
 ports:
   - port: 3000
