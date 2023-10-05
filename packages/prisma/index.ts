@@ -12,6 +12,7 @@ if (!globalThis.prisma) {
   globalThis.prisma = new PrismaClient({ datasourceUrl: getDatabaseUrl() });
 }
 
+console.log('!!!!!!!!!!!!!!!!!!!!!!!', getDatabaseUrl());
 export const prisma =
   globalThis.prisma ||
   new PrismaClient({
