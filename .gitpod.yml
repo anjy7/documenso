@@ -1,30 +1,36 @@
 tasks:
   - init: |
       cp .env.example .env &&
-      set -a; source .env &&
-      npm run dx &&
-      sed -i -e "s|http://localhost:3000|$(gp url 3000)|" .env \
-             -e "s|http://localhost:3001|$(gp url 3001)|" .env \
-             -e "s|http://localhost:9000|$(gp url 9000)|" .env 
+      sed -i -r "s#^(NEXTAUTH_URL=).*#\1 $(gp url 3000)#" .env && 
+      sed -i -r "s#^(NEXT_PUBLIC_WEBAPP_URL=).*#\1 $(gp url 3000)#" .env && 
+      sed -i -r "s#^(NEXT_PUBLIC_MARKETING_URL=).*#\1 $(gp url 3001)#" .env && 
+      cp .env packages/prisma/.env &&
+      npm run dx
     command: npm run dev
 ports:
   - port: 3000
     visibility: public
-    onOpen: open-preview
+    onOpen: open-browser
+
   - port: 3001
     visibility: public
-    onOpen: open-preview
+    onOpen: open-browser
+
   - port: 9000
     visibility: public
     onOpen: ignore
+
+  - port: 2025
+    visibility: public
+    onOpen: ignore
+  
   - port: 1100
-    visibility: private
+    visibility: public
     onOpen: ignore
-  - port: 2500
-    visibility: private
+  - port: 54320
+    visibility: public
     onOpen: ignore
-
-
+  
 github:
   prebuilds:
     master: true
@@ -36,4 +42,11 @@ github:
 
 vscode:
   extensions:
+    - DavidAnson.vscode-markdownlint
+    - yzhang.markdown-all-in-one
+    - esbenp.prettier-vscode
+    - dbaeumer.vscode-eslint
     - bradlc.vscode-tailwindcss
+    - ban.spellright
+    - Prisma.prisma
+   
