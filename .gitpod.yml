@@ -1,11 +1,10 @@
 tasks:
   - init: |
       cp .env.example .env &&
-      set -a; source .env &&
-      npm run dx &&
       sed -i -r "s#^(NEXTAUTH_URL=).*#\1 $(gp url 3000)#" .env && 
       sed -i -r "s#^(NEXT_PUBLIC_WEBAPP_URL=).*#\1 $(gp url 3000)#" .env && 
       sed -i -r "s#^(NEXT_PUBLIC_MARKETING_URL=).*#\1 $(gp url 3001)#" .env && 
+      npm run dx &&
     command: npm run dev
 ports:
   - port: 3000
