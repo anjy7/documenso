@@ -12,11 +12,10 @@ if (!globalThis.prisma) {
   globalThis.prisma = new PrismaClient({ datasourceUrl: getDatabaseUrl() });
 }
 
-console.log('!!!!!!!!!!!!!!!!!!!!!!!', getDatabaseUrl());
 export const prisma =
   globalThis.prisma ||
   new PrismaClient({
-    datasourceUrl: getDatabaseUrl(),
+    datasourceUrl: 'postgres://documenso:password@127.0.0.1:54320/documenso',
   });
 
 export const getPrismaClient = () => prisma;
